@@ -1,0 +1,19 @@
+[package]
+name = "aws"
+version = "0.0.0"
+authors = [ "https://github.com/samyatchmenoff" ]
+
+[[lib]]
+name = "aws"
+
+[[bin]]
+name = "aws"
+
+[dependencies.curl]
+git = "https://github.com/carllerche/curl-rust"
+
+[dependencies.rust-crypto]
+git = "https://github.com/DaGenix/rust-crypto"
+
+[dependencies.RustyXML]
+git = "https://github.com/Florob/RustyXML"
