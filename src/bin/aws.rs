@@ -18,7 +18,7 @@ fn cmd_s3_cat(args: &[&str]) {
     return;
   }
   let bucket_name = url.host;
-  let key = url.path.as_slice().trim_left_chars('/');
+  let key = url.path.path.as_slice().trim_left_chars('/');
   if key.len() == 0 {
     writeln!(io::stderr(), "Key not specified");
 
@@ -27,8 +27,7 @@ fn cmd_s3_cat(args: &[&str]) {
   let mut s3 = aws::s3::S3Connection::new(aws::auth::DefaultCredentialsProvider);
   match s3.get_object(bucket_name.as_slice(), key) {
     Ok(resp) => {
-      let content = str::from_utf8_lossy(resp.content.as_slice());
-      print!("{}", content);
+      io::stdout().write(resp.content.as_slice());
     }
     Err(e) => {
       writeln!(io::stderr(), "{}", e);

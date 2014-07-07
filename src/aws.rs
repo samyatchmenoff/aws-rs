@@ -1,3 +1,6 @@
+#![crate_name = "aws"]
+#![license = "ASL2"]
+
 extern crate time;
 extern crate serialize;
 extern crate url;
@@ -58,8 +61,8 @@ impl Request {
     let canonical_request = format!(
       "{}\n{}\n{}\nhost:{}\nx-amz-content-sha256:{}\nx-amz-date:{}\n\nhost;x-amz-content-sha256;x-amz-date\n{}",
       self.method,
-      self.url.path,
-      url::query_to_str(&self.url.query),
+      self.url.path.path,
+      url::query_to_str(&self.url.path.query),
       self.url.host, content_hash, full_date,
       content_hash
     );
